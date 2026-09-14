@@ -1,0 +1,15 @@
+html,
+body {
+  direction: rtl;
+  margin: 0;
+  font-family: 'Assistant', Arial, sans-serif;
+}
+
+.app-body {
+  display: flex;
+}
+
+.app-content {
+  flex: 1;
+  padding: 16px;
+}
