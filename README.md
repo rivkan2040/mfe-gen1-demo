@@ -1,8 +1,10 @@
-# TzrufotKlia_Client (פרויקט דמו)
+# mfe-gen1-demo
 
-אפליקציית MFE לדוגמה (Webpack Module Federation), המדמה שירות React 17 +
-`@material-ui/core` v4 שנמצא באמצע מיגרציה ל-React 18 + `@mui/material` v7 -
-בדיוק סוג הריפו ש-[`mfe-migration-v2`](../mfe-migration-v2) נועד להריץ עליו.
+פרויקט דמו של MFE **דור 1** (Webpack Module Federation, React 17 +
+`@material-ui/core` v4), שקיים אך ורק כדי לשמש כריפו-יעד לבדיקה של
+[`mfe-migration-v2`](../mfe-migration-v2) - הכלי שמיישם את המיגרציה ל-**דור
+2** (React 18 + `@mui/material` v7). השם מכוון: "gen1" = מה שיש כרגע, "demo"
+= פרויקט לבדיקה בלבד, לא אפליקציה אמיתית.
 
 זהו **פרויקט פיקסצ'ר**, לא אפליקציה בפרודקשן. הוא נבנה במכוון עם תמהיל של
 דפוסים legacy כדי לתרגל את כל סוגי הממצאים שה-S2 scan מזהה:
@@ -37,22 +39,26 @@
 
 ## הרצת ה-CLI של המיגרציה מול הפרויקט הזה
 
-מתוך תיקיית `mfe-migration-v2` (אחרי `npm install && npm run build` שם):
+מתוך תיקיית `mfe-migration-v2` (אחרי `npm run setup` שם, ראו README של
+אותו ריפו):
 
 ```powershell
-node packages\cli\dist\index.js preflight --repo C:\Users\WIN10\TzrufotKlia_Client
-node packages\cli\dist\index.js branch --repo C:\Users\WIN10\TzrufotKlia_Client --source main --target migration/mfe-v2 --auto-stash
-node packages\cli\dist\index.js scan --repo C:\Users\WIN10\TzrufotKlia_Client
+mfe-migrate preflight --repo C:\Users\WIN10\mfe-gen1-demo
+mfe-migrate branch --repo C:\Users\WIN10\mfe-gen1-demo --source main --target migration/mfe-v2 --auto-stash
+mfe-migrate scan --repo C:\Users\WIN10\mfe-gen1-demo
 ```
 
 או הכל ברצף:
 
 ```powershell
-node packages\cli\dist\index.js init --repo C:\Users\WIN10\TzrufotKlia_Client
+mfe-migrate init --repo C:\Users\WIN10\mfe-gen1-demo
 ```
 
+בלי `npm run link-cli` (כלומר בלי `mfe-migrate` על ה-PATH), מריצים במקום זה
+`node packages\cli\dist\index.js ...` מתוך תיקיית `mfe-migration-v2`.
+
 `preflight` ו-`scan` כותבים בהתאמה `preflight-report.json` ו-
-`inventory-report.json` לשורש הריפו הזה (`TzrufotKlia_Client`), לא לריפו של
+`inventory-report.json` לשורש הריפו הזה (`mfe-gen1-demo`), לא לריפו של
 הכלי.
 
 > `branch` דורש `origin` מוגדר עם ה-branch המקור (כדי ש-`git fetch`/

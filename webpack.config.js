@@ -8,10 +8,10 @@ const deps = require('./package.json').dependencies;
 // מארח פנימיים בלבד ולא כתובות בעולם החיצון.
 const API_HOSTS = {
   local: 'http://localhost:4001/api',
-  dev: 'https://tzrufotklia-dev.internal/api',
-  test: 'https://tzrufotklia-test.internal/api',
-  lrn: 'https://tzrufotklia-lrn.internal/api',
-  prod: 'https://tzrufotklia.internal/api',
+  dev: 'https://mfe-gen1-demo-dev.internal/api',
+  test: 'https://mfe-gen1-demo-test.internal/api',
+  lrn: 'https://mfe-gen1-demo-lrn.internal/api',
+  prod: 'https://mfe-gen1-demo.internal/api',
 };
 
 module.exports = (env = {}) => {
@@ -56,7 +56,7 @@ module.exports = (env = {}) => {
     plugins: [
       new HtmlWebpackPlugin({ template: './public/index.html' }),
       new ModuleFederationPlugin({
-        name: 'tzrufotKliaClient',
+        name: 'mfeGen1Demo',
         filename: 'remoteEntry.js',
         exposes: {
           './App': './src/App',
