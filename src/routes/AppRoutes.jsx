@@ -1,35 +1,30 @@
 import React from 'react';
-import { Switch, Route, Redirect, useHistory } from 'react-router-dom';
+import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom';
 import HomePage from '../pages/HomePage';
 import ClaimDetailsPage from '../pages/ClaimDetailsPage';
 import NotFoundPage from '../pages/NotFoundPage';
 
-// שים לב: המודול הזה עדיין כתוב בסגנון react-router-dom v5 (Switch/exact/
-// useHistory) אף שה-package.json כבר שדרג ל-v6. זהו חוב טכני שהמיגרציה
-// (S3 ואילך) אמורה לזהות ולתקן ל-Routes/useNavigate.
 function ClaimRedirect() {
-  const history = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   React.useEffect(() => {
-    if (!history.location.search.includes('claimId')) {
-      history.replace('/');
+    if (!location.search.includes('claimId')) {
+      navigate('/', { replace: true });
     }
-  }, [history]);
+  }, [location, navigate]);
 
-  return <Redirect to="/claims/new" />;
+  return <Navigate to="/claims/new" replace />;
 }
 
 function AppRoutes() {
   return (
-    <Switch>
-      <Route exact path="/" component={HomePage} />
-      <Route
-        path="/claims/:claimId"
-        render={(routeProps) => <ClaimDetailsPage {...routeProps} />}
-      />
-      <Route path="/claims" exact component={ClaimRedirect} />
-      <Route path="*" component={NotFoundPage} />
-    </Switch>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/claims/:claimId" element={<ClaimDetailsPage />} />
+      <Route path="/claims" element={<ClaimRedirect />} />
+      <Route path="*" element={<NotFoundPage />} />
+    </Routes>
   );
 }
 

@@ -73,3 +73,6 @@ npm run start
 ```
 
 (מריץ `webpack serve` על סביבת `sviva=local`, פורט 3001).
+
+בסביבת `local` אין שרת API: הנתונים (מספר התביעות הפתוחות) הם נתוני דמה
+שמוחזרים מתוך `src/services/claimsService.js`, בלי פנייה לרשת.

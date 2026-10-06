@@ -17,10 +17,10 @@ class SharedState {
     }
 }
 
-function getSharedState(name) {
+function getSharedState(name, initialValue) {
     window.globalStateHolder = window.globalStateHolder || {};
     if (!window.globalStateHolder[name]) {
-        window.globalStateHolder[name] = new SharedState()
+        window.globalStateHolder[name] = new SharedState(initialValue)
 
     }
     return window.globalStateHolder[name];
@@ -28,10 +28,10 @@ function getSharedState(name) {
 
 const useSharedState = (stateName, initialValue) => {
 
-    const [sharedState, setSharedState] = useState(initialValue || getSharedState(stateName).state.value);
+    const [sharedState, setSharedState] = useState(initialValue || getSharedState(stateName, initialValue).state.value);
 
     useEffect(() => {
-        const subscription = getSharedState(stateName).state.subscribe({
+        const subscription = getSharedState(stateName, initialValue).state.subscribe({
             next: state => {
                 setSharedState(state)
             }

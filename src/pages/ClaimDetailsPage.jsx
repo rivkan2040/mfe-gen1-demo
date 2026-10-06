@@ -1,4 +1,5 @@
 import React from 'react';
+import { useParams } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
@@ -16,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
   }),
 }));
 
-function ClaimDetailsPage({ match }) {
-  const claimId = match?.params?.claimId;
+function ClaimDetailsPage() {
+  const { claimId } = useParams();
   const [claimDraft, setClaimDraft] = useSharedState('claimDraft', { urgent: false, incidentDate: null });
   const classes = useStyles({ urgent: claimDraft.urgent });
 
