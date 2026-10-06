@@ -7,7 +7,7 @@ const deps = require('./package.json').dependencies;
 // כתובות ה-API לפי סביבה (sviva). הפרויקט רץ ברשת סגורה, לכן אלה שמות
 // מארח פנימיים בלבד ולא כתובות בעולם החיצון.
 const API_HOSTS = {
-  local: 'http://localhost:4001/api',
+  local: 'https://mfe-gen1-demo-dev.internal/api',
   dev: 'https://mfe-gen1-demo-dev.internal/api',
   test: 'https://mfe-gen1-demo-test.internal/api',
   lrn: 'https://mfe-gen1-demo-lrn.internal/api',
